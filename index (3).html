@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensitivity Settings - Free Fire</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e215d, #8a2be2); /* تدرج لوني مريح */
+            color: #fff; /* نص أبيض */
+            text-align: left;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgba(30, 30, 30, 0.8); /* خلفية داكنة لشفافة */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFD700; /* لون ذهبي */
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        .sensitivity {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sensitivity label {
+            width: 120px;
+            text-align: right;
+            margin-right: 10px;
+            color: #FF6347; /* لون طماطم */
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            margin: 0 10px;
+            -webkit-appearance: none;
+            height: 8px; /* ارتفاع شريط التمرير */
+            border-radius: 5px;
+            background: linear-gradient(90deg, #FF4500, #FF6347); /* تدرج لوني مثير للشريط */
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 15px; /* حجم التنبيه */
+            width: 15px; /* حجم التنبيه */
+            border-radius: 50%;
+            background: #28a745; /* لون التنبيه */
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="number"] {
+            width: 60px;
+            margin-left: 10px;
+            text-align: center;
+            border: 1px solid #FF6347; /* لون طماطم */
+            border-radius: 4px;
+            background-color: rgba(200, 200, 200, 0.2); /* لون رمادي شفاف */
+            color: #FFD700; /* نص ذهبي */
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #FFD700; /* لون ذهبي عند التركيز */
+        }
+
+        h3 {
+            text-align: center;
+            color: #FFD700; /* لون ذهبي */
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 id="heading" contenteditable="true">Sensitivity Settings</h1>
+
+    <div class="sensitivity">
+        <label for="generalSlider">General:</label>
+        <input type="range" min="0" max="200" value="100" id="generalSlider"/>
+        <input type="number" id="generalInput" value="100" min="0" max="200"/>
+    </div>
+
+    <div class="sensitivity">
+        <label for="redDotSlider">Red Dot:</label>
+        <input type="range" min="0" max="200" value="50" id="redDotSlider"/>
+        <input type="number" id="redDotInput" value="50" min="0" max="200"/>
+    </div>
+
+    <div class="sensitivity">
+        <label for="twoXSlider">2x Scope:</label>
+        <input type="range" min="0" max="200" value="80" id="twoXSlider"/>
+        <input type="number" id="twoXInput" value="80" min="0" max="200"/>
+    </div>
+
+    <div class="sensitivity">
+        <label for="fourXSlider">4x Scope:</label>
+        <input type="range" min="0" max="200" value="90" id="fourXSlider"/>
+        <input type="number" id="fourXInput" value="90" min="0" max="200"/>
+    </div>
+
+    <div class="sensitivity">
+        <label for="sniperSlider">Sniper Scope:</label>
+        <input type="range" min="0" max="200" value="120" id="sniperSlider"/>
+        <input type="number" id="sniperInput" value="120" min="0" max="200"/>
+    </div>
+
+    <div class="sensitivity">
+        <label for="freeLookSlider">Free Look:</label>
+        <input type="range" min="0" max="200" value="70" id="freeLookSlider"/>
+        <input type="number" id="freeLookInput" value="70" min="0" max="200"/>
+    </div>
+
+    <div class="sensitivity">
+        <label for="sixXSlider">6x Scope:</label>
+        <input type="range" min="0" max="200" value="70" id="sixXSlider"/>
+        <input type="number" id="sixXInput" value="70" min="0" max="200"/>
+    </div>
+</div>
+
+<center><h3 id="bsize" contenteditable="true">Button: 50</h3></center>
+
+<script>
+    // ربط شريط التمرير مع حقل الرقم
+    function syncRangeWithInput(rangeId, inputId) {
+        const range = document.getElementById(rangeId);
+        const input = document.getElementById(inputId);
+        range.oninput = function () {
+            input.value = range.value;
+        };
+        input.oninput = function () {
+            this.value = Math.max(range.min, Math.min(range.max, this.value));
+            range.value = this.value;
+        };
+    }
+
+    syncRangeWithInput('generalSlider', 'generalInput');
+    syncRangeWithInput('redDotSlider', 'redDotInput');
+    syncRangeWithInput('twoXSlider', 'twoXInput');
+    syncRangeWithInput('fourXSlider', 'fourXInput');
+    syncRangeWithInput('sniperSlider', 'sniperInput');
+    syncRangeWithInput('freeLookSlider', 'freeLookInput');
+    syncRangeWithInput('sixXSlider', 'sixXInput');
+</script>
+
+</body>
+</html>
